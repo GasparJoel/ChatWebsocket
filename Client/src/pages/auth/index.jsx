@@ -2,8 +2,26 @@ import Victory from "@/assets/victory.svg";
 import Background from "@/assets/login2.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 export const Auth = () => {
+  const RegisterUser = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [user, setuser] = useState(RegisterUser);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setuser((prevUser) => ({
+      ...prevUser,
+      [name]: value, // Actualiza solo el campo correspondiente
+    }));
+    console.log(user.email)
+  };
+
   return (
     <div className="h-[100vh] w-[100vh] flex items-center justify-center">
       <div
@@ -44,7 +62,14 @@ export const Auth = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="login">
-                 <Input type="email" placeholder="Email" />
+                <Input
+                  className="rounded-full p-6"
+                  value={user.email}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                />
                 <p>Login form goes here</p>
               </TabsContent>
               <TabsContent value="signup">
