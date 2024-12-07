@@ -3,6 +3,7 @@ import Background from "@/assets/login2.png";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export const Auth = () => {
   const RegisterUser = {
@@ -13,7 +14,7 @@ export const Auth = () => {
 
   const [user, setuser] = useState(RegisterUser);
 
-  const handleChange = (e) => {
+  const handleLogin = (e) => {
     const { name, value } = e.target;
     setuser((prevUser) => ({
       ...prevUser,
@@ -61,20 +62,61 @@ export const Auth = () => {
                   Signup
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="login">
+              <TabsContent className="flex flex-col gap-5 mt-10" value="login">
                 <Input
                   className="rounded-full p-6"
                   value={user.email}
                   type="email"
                   name="email"
                   placeholder="Email"
-                  onChange={handleChange}
+                  onChange={handleLogin}
                 />
-                <p>Login form goes here</p>
+
+                <Input
+                  className="rounded-full p-6"
+                  value={user.password}
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  onChange={handleLogin}
+                />
+                <Button className="rounded-full p-6">Login </Button>
               </TabsContent>
-              <TabsContent value="signup">
+
+              <TabsContent className="flex flex-col gap-5 mt-10"  value="signup">
+             
+              <Input
+                  className="rounded-full p-6"
+                  value={user.email}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+              
+                />
+
+                <Input
+                  className="rounded-full p-6"
+                  value={user.password}
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                 
+                />
+
+              <Input
+                  className="rounded-full p-6"
+                  value={user.confirmPassword}
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirmpassword"
+            
+                />
+
+                <Button className="rounded-full p-6">Login </Button>
                 <p>Signup form goes here</p>
               </TabsContent>
+
+
             </Tabs>
           </div>
         </div>
