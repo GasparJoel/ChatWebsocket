@@ -120,6 +120,10 @@ export const Auth = () => {
             </Tabs>
           </div>
         </div>
+        <div className="hidden xl:flex flex justify-center items-center">
+          <img src={Background} alt="Background login" className="h-[700px]" />
+
+        </div>
       </div>
     </div>
   );
