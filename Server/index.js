@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import './database.js'; // Asegúrate de que el archivo esté en el directorio correcto
+import authRoutes from "./routes/Authroutes.js";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
+//Para las rutas 
+app.use('/api/auth',authRoutes)
 
 // Configuración del puerto
 const port = process.env.PORT || 3000;

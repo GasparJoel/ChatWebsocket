@@ -1,4 +1,4 @@
-import User from "../models/UserModel";
+import User from "../models/UserModel.js";
 import  jwt  from "jsonwebtoken";
 
 const maxAge = 3*24*60*60*60 ;
@@ -31,8 +31,8 @@ export const signup= async (req,res,next)=>{
          // Establecer la cookie del token
         res.cookie("jwt",token,{
             maxAge:maxAge *1000,// Convertir segundos a milisegundos
-            httpOnly:true, // Asegurar que la cookie no sea accesible desde el cliente
-            secure:true,
+            httpOnly:true, // La cookie no puede ser accedida por JavaScript, reduciendo riesgos como ataques XSS.
+            secure:true,// La cookie solo se envía a través de conexiones HTTPS.
             sameSite:"None" // Permitir cookies en distintos dominios
         })
 
@@ -40,6 +40,7 @@ export const signup= async (req,res,next)=>{
             user:{
                 id:usernew.id,
                 email:usernew.email,
+                profileSetup:usernew.profileSetup,
             }
         })
 
